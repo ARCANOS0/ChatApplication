@@ -1,5 +1,17 @@
+# to solve the issue of python not recognizing the file as a pakcage 
+import sys
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+
+
 # server accepts connections & responds 
-from common.config import *
+from common.config import*
 import socket as soc 
 
 def start_server() :
