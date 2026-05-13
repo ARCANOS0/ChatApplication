@@ -26,7 +26,7 @@ def handle_client(client_socket, client_address, function, clients):
                 print(f"[DISCONNECTED] {client_address}")
                 break
 
-            print(f"[MESSAGE from {client_address}]: {msg}")
+            print(f"[MESSAGE from {student_id}]: {msg}")
 
             broadcast_msg = f"[{client_address[1]}]: {msg}"
             function(broadcast_msg, client_socket)
