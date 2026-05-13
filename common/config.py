@@ -14,7 +14,7 @@ ONE client connection per server
 
 # global variables 
 
-STUDENT_ID = "0000000" # TODO : change it later based on the level of implementation 
+STUDENT_ID = "2320305" # TODO : change it later based on the level of implementation 
 
 HOST = "127.0.0.1" # local host 
 
