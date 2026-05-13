@@ -2,7 +2,7 @@
 
 This is a simple chat application developed using python 
 
-1. `to run this application you can simply copy this command into your terminal `git clone https://github.com/ARCANOS0/ChatApplication.git` then `cd ChatApplication`.
+1. to run this application you can simply copy this command into your terminal `git clone https://github.com/ARCANOS0/ChatApplication.git` then `cd ChatApplication`.
 
 2. then run the command `export PYTHONPATH="PATH TO THE SERVER FOLDER"` .
 
