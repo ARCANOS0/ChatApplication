@@ -13,6 +13,28 @@ if parent_dir not in sys.path:
 from common.config import HOST, PORT
 from client_handler import handle_client
 
+
+
+
+# ----------------------------------------------------- # 
+
+clients = []
+
+# to give the server the ability to send messages to multiple users, y3any il multi-threading 
+def broadcast(msg, client_socket) :
+    for client in clients :
+        if client != client_socket :
+            try :
+                client.send(msg.encode('utf-8'))
+            except :
+                clients.remove(client)
+
+    
+    
+
+
+
+
 def start_server():
     server = soc.socket(soc.AF_INET, soc.SOCK_STREAM)
     
@@ -27,9 +49,15 @@ def start_server():
         while True:
             # Accept new connection
             client_socket, client_address = server.accept()
+            clients.append(client_socket) # this line will add every new client to the connected server 
             
             # Create a new thread for each client (Level 2 Requirement)
-            thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
+
+            # 
+            thread = threading.Thread(
+                target=handle_client, 
+                args=(client_socket, client_address, broadcast, clients)
+            )
             thread.start()
             
             # Show how many active connections there are
