@@ -7,14 +7,14 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from common.config import HOST, PORT
+from common.config import*
 
 
 def handle_client(client_socket, client_address, function, clients):
 
 #!! next few lines connected to app.py file to handle the student ID before proceeding to the chat interface 
     student_id = client_socket.recv(1024).decode('utf-8')
-
+    derived_port = assign_port(student_id)
 
     print(f"[NEW] {student_id} connected") # this was client_address, but now it changed and became the ID of the student
 
@@ -28,7 +28,8 @@ def handle_client(client_socket, client_address, function, clients):
 
             print(f"[MESSAGE from {student_id}]: {msg}")
 
-            broadcast_msg = f"[{client_address[1]}]: {msg}"
+            # broadcast_msg = f"[{client_address[derived_port]}]: {msg}"
+            broadcast_msg = f"[User {derived_port}]: {msg}"
             function(broadcast_msg, client_socket)
             # response = f"[RESPONSE] {msg} received!"
             # client_socket.send(response.encode('utf-8'))

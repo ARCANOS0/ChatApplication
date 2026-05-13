@@ -14,21 +14,20 @@ ONE client connection per server
 
 # global variables 
 
-STUDENT_ID = "2320305" # TODO : change it later based on the level of implementation 
 
 HOST = "127.0.0.1" # local host 
 
 
 # exctracting logic 
-def assign_port(id : str) -> int : 
-    converted_id = int(id[-5:]) # get the last 5 digits of the id
-    if converted_id > 65535 :
-        converted_id = int(id[-4:]) # get the last 4 digits of the id
-    elif converted_id < 1024 :
-        converted_id += 10000 # add 10000 to ensure it is within the valid range
+def assign_port(id : str) -> int :
 
-    return converted_id 
+    try: 
+        converted_id = int(id[-5:]) # get the last 5 digits of the id
+        if converted_id > 65535 :
+            converted_id = int(id[-4:]) # get the last 4 digits of the id
+        elif converted_id < 1024 :
+            converted_id += 10000 # add 10000 to ensure it is within the valid range
 
-
-# global variable for the port number
-PORT = assign_port(STUDENT_ID)
+        return converted_id 
+    except:
+        return 8080

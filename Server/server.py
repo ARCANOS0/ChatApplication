@@ -10,7 +10,7 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from common.config import HOST, PORT
+from common.config import *
 from client_handler import handle_client
 
 
@@ -31,16 +31,16 @@ def broadcast(msg, client_socket) :
 
 
 
-def start_server():
+def start_server(port):
     server = soc.socket(soc.AF_INET, soc.SOCK_STREAM)
     
     # Allow restarting the server immediately without "Address already in use" error
     server.setsockopt(soc.SOL_SOCKET, soc.SO_REUSEADDR, 1)
     
     try:
-        server.bind((HOST, PORT))
+        server.bind((HOST, port))
         server.listen()
-        print(f"[LISTENING] Server is running on {HOST}:{PORT}")
+        print(f"[LISTENING] Server is running on {HOST}:{port}")
 
         while True:
             # Accept new connection
