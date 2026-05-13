@@ -29,10 +29,6 @@ def broadcast(msg, client_socket) :
             except :
                 clients.remove(client)
 
-    
-    
-
-
 
 
 def start_server():
@@ -51,9 +47,8 @@ def start_server():
             client_socket, client_address = server.accept()
             clients.append(client_socket) # this line will add every new client to the connected server 
             
-            # Create a new thread for each client (Level 2 Requirement)
 
-            # 
+            
             thread = threading.Thread(
                 target=handle_client, 
                 args=(client_socket, client_address, broadcast, clients)
